@@ -1,0 +1,24 @@
+!git clone https://github.com/cracker911181/roop
+%cd roop
+#Tested and updated 23 August 2023 commit
+#!git checkout da1ef285f1d43bd0cc8b9cdb9a0f80f7ae793a97
+!pip install onnxruntime-gpu && pip install -r requirements.txt
+!pip install onnxruntime-gpu --upgrade
+!apt-get update --yes
+!apt install nvidia-cuda-toolkit --yes
+!pip install opennsfw2 keras --upgrade
+
+
+
+
+# low quality video
+
+%cd "/content/roop"
+!python run.py -s "face2.png" -t "brad org.mp4" -o "face_changed_video_v2.mp4" --keep-frames --keep-fps --temp-frame-quality 1 --output-video-quality 1 --execution-provider cuda
+
+
+
+# high quality video
+
+%cd "/content/roop"
+!python run.py -s "/content/ffjk2.jpeg" -t "/content/video2.mp4" -o "face_restored_video3.mp4" --keep-frames --keep-fps --temp-frame-quality 1 --output-video-quality 1 --execution-provider cuda --frame-processor face_swapper face_enhancer
